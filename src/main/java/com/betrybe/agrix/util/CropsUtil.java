@@ -17,6 +17,8 @@ public class CropsUtil {
     Crops crop = new Crops();
     crop.setName(cropRequest.name());
     crop.setPlantedArea(cropRequest.plantedArea());
+    crop.setPlantedDate(cropRequest.plantedDate());
+    crop.setHarvestDate(cropRequest.harvestDate());
     return crop;
   }
 
@@ -28,7 +30,9 @@ public class CropsUtil {
         crops.getId(),
         crops.getName(),
         crops.getPlantedArea(),
-        crops.getFarm().getId()
+        crops.getFarm().getId(),
+        crops.getPlantedDate(),
+        crops.getHarvestDate()
     );
   }
 }
