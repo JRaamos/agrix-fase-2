@@ -8,6 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,13 +25,8 @@ public class Fertilizers {
   private String brand;
   private String composition;
 
-  @ManyToMany
-  @JoinTable(
-      name = "crops_fertilizers",
-      joinColumns = @JoinColumn(name = "fertilizer_id"),
-      inverseJoinColumns = @JoinColumn(name = "crops_id")
-  )
-  private Set<Crops> crops;
+  @ManyToMany(mappedBy = "fertilizers")
+  private List<Crops> crops;
 
   public Long getId() {
     return id;
@@ -64,11 +60,11 @@ public class Fertilizers {
     this.composition = composition;
   }
 
-  public Set<Crops> getCrops() {
+  public List<Crops> getCrops() {
     return crops;
   }
 
-  public void setCrops(Set<Crops> crops) {
+  public void setCrops(List<Crops> crops) {
     this.crops = crops;
   }
 }

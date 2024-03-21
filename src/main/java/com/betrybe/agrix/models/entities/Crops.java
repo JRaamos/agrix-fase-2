@@ -5,10 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *  entidade crops.
@@ -24,11 +26,18 @@ public class Crops {
   private LocalDate plantedDate;
   private LocalDate harvestDate;
 
-  @ManyToMany(mappedBy = "crops")
 
   @ManyToOne
   @JoinColumn(name = "farm_id")
   private Farms farm;
+
+  @ManyToMany
+  @JoinTable(
+      name = "crop_fertilizer",
+      joinColumns = @JoinColumn(name = "crop_id"),
+      inverseJoinColumns = @JoinColumn(name = "fertilizer_id")
+  )
+  private List<Fertilizers> fertilizers;
 
   public String getName() {
     return name;
@@ -76,5 +85,14 @@ public class Crops {
 
   public void setHarvestDate(LocalDate harvestDate) {
     this.harvestDate = harvestDate;
+  }
+
+  public List<Fertilizers> getFertilizers() {
+    return fertilizers;
+  }
+
+  public void setFertilizers(
+      List<Fertilizers> fertilizers) {
+    this.fertilizers = fertilizers;
   }
 }

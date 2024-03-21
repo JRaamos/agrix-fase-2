@@ -1,6 +1,5 @@
 package com.betrybe.agrix.service;
 
-import com.betrybe.agrix.exeptions.FarmsException;
 import com.betrybe.agrix.exeptions.FertilizerException;
 import com.betrybe.agrix.models.entities.Fertilizers;
 import com.betrybe.agrix.models.repositories.FertilizerRepositorie;
