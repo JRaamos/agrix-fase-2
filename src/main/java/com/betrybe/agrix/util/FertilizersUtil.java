@@ -1,13 +1,13 @@
 package com.betrybe.agrix.util;
 
 import com.betrybe.agrix.dtos.FertilizersRequest;
-import com.betrybe.agrix.dtos.FertilizerResponse;
+import com.betrybe.agrix.dtos.FertilizersResponse;
 import com.betrybe.agrix.models.entities.Fertilizers;
 
 public class FertilizersUtil {
 
-  public static FertilizerResponse fertilizerResponseConvert(Fertilizers fertilizer) {
-    return new FertilizerResponse(
+  public static FertilizersResponse fertilizerResponseConvert(Fertilizers fertilizer) {
+    return new FertilizersResponse(
         fertilizer.getId(),
         fertilizer.getName(),
         fertilizer.getBrand(),
