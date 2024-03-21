@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class FertilizersService {
 
-   private final FertilizerRepositorie fertilizerRepositorie;
+  private final FertilizerRepositorie fertilizerRepositorie;
 
-   @Autowired
-   public FertilizersService(FertilizerRepositorie fertilizerRepositorie) {
-     this.fertilizerRepositorie = fertilizerRepositorie;
-   }
+  @Autowired
+  public FertilizersService(FertilizerRepositorie fertilizerRepositorie) {
+    this.fertilizerRepositorie = fertilizerRepositorie;
+  }
 
-    public Fertilizers createFertilizer(Fertilizers fertilizer) {
-      return fertilizerRepositorie.save(fertilizer);
+  public Fertilizers createFertilizer(Fertilizers fertilizer) {
+    return fertilizerRepositorie.save(fertilizer);
   }
 }

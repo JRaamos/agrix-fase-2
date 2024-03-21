@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 import java.util.Set;
 
 /**
- *  entidade de Fertilizers.
+ * Entidade de Fertilizantes.
  */
 @Entity
 @Table(name = "fertilizers")
@@ -31,22 +31,44 @@ public class Fertilizers {
       inverseJoinColumns = @JoinColumn(name = "crops_id")
   )
   private Set<Crops> crops;
-  public Long getId() { return id; }
 
-  public String getName() { return name; }
+  public Long getId() {
+    return id;
+  }
 
-  public String getBrand() { return brand; }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-  public String getComposition() { return composition; }
+  public String getName() {
+    return name;
+  }
 
-  public void setId(Long id) { this.id = id; }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-  public void setName(String name) { this.name = name; }
+  public String getBrand() {
+    return brand;
+  }
 
-  public void setBrand(String brand) { this.brand = brand; }
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+  public String getComposition() {
+    return composition;
+  }
 
   public void setComposition(String composition) {
     this.composition = composition;
   }
 
+  public Set<Crops> getCrops() {
+    return crops;
+  }
+
+  public void setCrops(Set<Crops> crops) {
+    this.crops = crops;
+  }
 }

@@ -22,6 +22,7 @@ public class ControllerException {
   public ResponseEntity<String> handleCropNotFoundException(CropsException e) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plantação não encontrada!");
   }
+
   @ExceptionHandler(FertilizerException.class)
   public ResponseEntity<String> handleFertilizerNotFoundException(FertilizerException e) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fertilizante não encontrado!");

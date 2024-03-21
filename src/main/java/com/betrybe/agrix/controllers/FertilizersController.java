@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ *  * Controller com respostar para o cliente.
+ */
 @RestController
 @RequestMapping("/fertilizers")
 public class FertilizersController {
@@ -23,8 +26,12 @@ public class FertilizersController {
     this.fertilizerService = fertilizerService;
   }
 
+  /**
+   * Metodo para criar um Fertilizer.
+   */
   @PostMapping
-  public ResponseEntity<FertilizersResponse> createFertilizer(@RequestBody FertilizersRequest fertilizerRequest) {
+  public ResponseEntity<FertilizersResponse> createFertilizer(@RequestBody
+        FertilizersRequest fertilizerRequest) {
     Fertilizers newFertilizer = FertilizersUtil.fertilizerDtoCreateConvert(fertilizerRequest);
 
     Fertilizers savedFertilizer = fertilizerService.createFertilizer(newFertilizer);

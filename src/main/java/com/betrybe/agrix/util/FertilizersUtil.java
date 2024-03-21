@@ -4,8 +4,14 @@ import com.betrybe.agrix.dtos.FertilizersRequest;
 import com.betrybe.agrix.dtos.FertilizersResponse;
 import com.betrybe.agrix.models.entities.Fertilizers;
 
+/**
+ *  CLasse ultil para Fertilizer.
+ */
 public class FertilizersUtil {
 
+  /**
+   *  Metodo para DTO convert.
+   */
   public static FertilizersResponse fertilizerResponseConvert(Fertilizers fertilizer) {
     return new FertilizersResponse(
         fertilizer.getId(),
@@ -15,6 +21,9 @@ public class FertilizersUtil {
     );
   }
 
+  /**
+   *  Metodo para DTO convert.
+   */
   public static Fertilizers fertilizerDtoCreateConvert(FertilizersRequest request) {
     Fertilizers fertilizer = new Fertilizers();
     fertilizer.setName(request.name());
