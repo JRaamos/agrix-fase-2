@@ -14,8 +14,17 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CropsService {
+  private final CropsRepositorie cropsRepositorie;
+  private final FertilizersService fertilizersService;
+
+  /**
+   * Contuctor.
+   */
   @Autowired
-  private CropsRepositorie cropsRepositorie;
+  public CropsService(CropsRepositorie cropsRepositorie, FertilizersService fertilizersService) {
+    this.cropsRepositorie = cropsRepositorie;
+    this.fertilizersService = fertilizersService;
+  }
 
   public List<Crops> findAllCrops() {
     return cropsRepositorie.findAll();
@@ -37,5 +46,18 @@ public class CropsService {
    */
   public List<Crops> findCropsBetweenDates(LocalDate start, LocalDate end) {
     return cropsRepositorie.findByHarvestDateBetween(start, end);
+  }
+
+  /**
+   * Associação.
+   */
+  public Crops cropAndFertilizers(Long cropId, Long fertilizerId) {
+    Optional<Crops> cropOptional = cropsRepositorie.findById(cropId);
+    if (cropOptional.isPresent()) {
+      Crops crops = cropOptional.get();
+      crops.getFertilizers().add(fertilizersService.fidByFertilizerId(fertilizerId));
+      return cropsRepositorie.save(crops);
+    }
+    throw new CropsException();
   }
 }
