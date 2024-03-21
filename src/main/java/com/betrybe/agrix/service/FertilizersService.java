@@ -30,6 +30,9 @@ public class FertilizersService {
     return fertilizerRepositorie.findAll();
   }
 
+  /**
+   * Metodo para buscar por id.
+   */
   public Fertilizers fidByFertilizerId(Long id) {
     Optional<Fertilizers> searchedFertilizerById = fertilizerRepositorie.findById(id);
     if (searchedFertilizerById.isPresent()) {
