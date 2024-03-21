@@ -5,9 +5,12 @@ import com.betrybe.agrix.dtos.FertilizersResponse;
 import com.betrybe.agrix.models.entities.Fertilizers;
 import com.betrybe.agrix.service.FertilizersService;
 import com.betrybe.agrix.util.FertilizersUtil;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,5 +41,17 @@ public class FertilizersController {
     FertilizersResponse response = FertilizersUtil.fertilizerResponseConvert(savedFertilizer);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
+
+  /**
+   * Metodo para bucar todos Fertilizer.
+   */
+  @GetMapping
+  public ResponseEntity<List<FertilizersResponse>> getAllFertilizers() {
+    List<Fertilizers> allFertilizers = fertilizerService.findAll();
+    List<FertilizersResponse> response = allFertilizers.stream()
+        .map(FertilizersUtil::fertilizerResponseConvert)
+        .collect(Collectors.toList());
+    return ResponseEntity.ok(response);
   }
 }
