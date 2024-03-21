@@ -1,5 +1,7 @@
 package com.betrybe.agrix.controllers;
 
+import static com.betrybe.agrix.util.FertilizersUtil.fertilizerResponseConvert;
+
 import com.betrybe.agrix.dtos.FertilizersRequest;
 import com.betrybe.agrix.dtos.FertilizersResponse;
 import com.betrybe.agrix.models.entities.Fertilizers;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +41,7 @@ public class FertilizersController {
     Fertilizers newFertilizer = FertilizersUtil.fertilizerDtoCreateConvert(fertilizerRequest);
 
     Fertilizers savedFertilizer = fertilizerService.createFertilizer(newFertilizer);
-    FertilizersResponse response = FertilizersUtil.fertilizerResponseConvert(savedFertilizer);
+    FertilizersResponse response = fertilizerResponseConvert(savedFertilizer);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
@@ -53,5 +56,14 @@ public class FertilizersController {
         .map(FertilizersUtil::fertilizerResponseConvert)
         .collect(Collectors.toList());
     return ResponseEntity.ok(response);
+  }
+
+  /**
+   * Metodo para buscar Fertilizer por parameto especifico.
+   */
+  @GetMapping("/{fertilizerId}")
+  public ResponseEntity<?> getFarmById(@PathVariable Long fertilizerId) {
+    Fertilizers fertilizers = fertilizerService.fidByFertilizerId(fertilizerId);
+    return ResponseEntity.status(HttpStatus.OK).body(fertilizerResponseConvert(fertilizers));
   }
 }
